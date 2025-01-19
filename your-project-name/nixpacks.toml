@@ -9,7 +9,7 @@ commands = [
 
 [phases.start]
 commands = [
-  "php-fpm"
+  "php-fpm --fpm-config ./php-fpm.conf"
 ]
 
 [services.nginx]
