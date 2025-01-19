@@ -24,34 +24,34 @@ use Inertia\Inertia;
 
 
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/admin', function () {
-        return Inertia::render('Admin'); // Your custom Admin view
-    })->name('admin');
+// Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+//     Route::get('/admin', function () {
+//         return Inertia::render('Admin'); // Your custom Admin view
+//     })->name('admin');
 
-    Route::get('/home', function () {
-        return Inertia::render('Home'); // Your custom Home view
-    })->name('home');
+//     Route::get('/home', function () {
+//         return Inertia::render('Home'); // Your custom Home view
+//     })->name('home');
 
-    Route::get('/officers', function () {
-        return Inertia::render('Officers'); // Your custom Officers view
-    })->name('officers');
+//     Route::get('/officers', function () {
+//         return Inertia::render('Officers'); // Your custom Officers view
+//     })->name('officers');
 
-    Route::get('/faculty', function () {
-        return Inertia::render('Faculty'); // Your custom Faculty view
-    })->name('faculty');
-});
+//     Route::get('/faculty', function () {
+//         return Inertia::render('Faculty'); // Your custom Faculty view
+//     })->name('faculty');
+// });
 
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';
 
 
 
