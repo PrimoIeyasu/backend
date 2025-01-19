@@ -1,4 +1,4 @@
-[phases.build]
+[phases.setup]
 commands = [
   "composer install --no-dev --optimize-autoloader",
   "php artisan key:generate",
@@ -9,7 +9,7 @@ commands = [
 
 [phases.start]
 commands = [
-  "nginx -g 'daemon off;'"
+  "php artisan serve --host=0.0.0.0 --port=8000"
 ]
 
 [services]
