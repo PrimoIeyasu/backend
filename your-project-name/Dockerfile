@@ -37,4 +37,5 @@ RUN php artisan view:cache
 EXPOSE 8000
 
 # Run Laravel's built-in PHP server (use CMD, not RUN)
-CMD php artisan serve --host=0.0.0.0 --port=8000
+ENTRYPOINT ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+
