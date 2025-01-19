@@ -9,16 +9,16 @@ class StudentChannel
     /**
      * Create a new channel instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    // public function __construct()
+    // {
+    //     //
+    // }
 
-    /**
-     * Authenticate the user's access to the channel.
-     */
-    public function join(User $user): array|bool
-    {
-        //
-    }
+    // /**
+    //  * Authenticate the user's access to the channel.
+    //  */
+    // public function join(User $user): array|bool
+    // {
+    //     //
+    // }
 }
