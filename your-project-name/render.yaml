@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: my-laravel-app
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    buildCommand: |
+      apt-get update && apt-get install -y dos2unix
+      dos2unix /path/to/your/scripts
+    startCommand: php artisan serve --host=0.0.0.0 --port=8000
