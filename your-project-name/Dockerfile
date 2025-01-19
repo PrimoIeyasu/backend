@@ -21,7 +21,7 @@ WORKDIR /var/www
 COPY . .
 
 # Convert scripts to Unix format
-RUN dos2unix /var/www/*
+RUN find . -type f -print0 | xargs -0 dos2unix
 
 # Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
@@ -40,5 +40,5 @@ RUN php artisan view:cache
 # Expose port 8000
 EXPOSE 8000
 
-# Use ENTRYPOINT to run Laravel's built-in PHP server
-ENTRYPOINT ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# Use shell form for ENTRYPOINT to run Laravel's built-in PHP server
+ENTRYPOINT php artisan serve --host=0.0.0.0 --port=8000
