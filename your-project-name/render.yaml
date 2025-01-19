@@ -3,8 +3,10 @@ services:
     name: my-laravel-app
     env: docker
     plan: free
+    dockerfilePath: ./Dockerfile
     buildCommand: |
-      apt-get update && apt-get install -y nginx
+      apt-get update && apt-get install -y nginx dos2unix
+      dos2unix /path/to/your/scripts
       composer install --no-dev --optimize-autoloader
       php artisan key:generate
       php artisan config:cache
