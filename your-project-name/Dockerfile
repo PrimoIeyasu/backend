@@ -36,5 +36,5 @@ RUN php artisan view:cache
 # Expose port 8000
 EXPOSE 8000
 
-# Start PHP-FPM or Laravel's Artisan serve command
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# Start Laravel development server
+CMD php artisan serve --host=0.0.0.0 --port=8000
