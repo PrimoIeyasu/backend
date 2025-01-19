@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     zip \
     git \
+    dos2unix \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd
 
@@ -18,6 +19,9 @@ WORKDIR /var/www
 
 # Copy app files to the container
 COPY . .
+
+# Convert scripts to Unix format
+RUN dos2unix /var/www/*
 
 # Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
@@ -36,6 +40,5 @@ RUN php artisan view:cache
 # Expose port 8000
 EXPOSE 8000
 
-# Run Laravel's built-in PHP server (use CMD, not RUN)
+# Use ENTRYPOINT to run Laravel's built-in PHP server
 ENTRYPOINT ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
-
