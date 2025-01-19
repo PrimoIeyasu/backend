@@ -1,35 +1,34 @@
-[phases.setup]
-commands = [
-  "composer install --no-dev --optimize-autoloader",
-  "php artisan key:generate",
-  "php artisan config:cache",
-  "php artisan route:cache",
-  "php artisan view:cache"
-]
+services:
+  - type: web
+    name: my-laravel-app
+    env: docker
+    plan: free
+    buildCommand: |
+      apt-get update && apt-get install -y nginx dos2unix
+      dos2unix /path/to/your/scripts
+      composer install --no-dev --optimize-autoloader
+      php artisan key:generate
+      php artisan config:cache
+      php artisan route:cache
+      php artisan view:cache
+    startCommand: service nginx start && php-fpm
+    nginx:
+      config: |
+        server {
+            listen 80;
+            server_name _;
 
-[phases.start]
-commands = [
-  "php artisan serve --host=0.0.0.0 --port=8000"
-]
+            root /app/public;
+            index index.php index.html;
 
-[services.nginx]
-config = """
-server {
-    listen 80;
-    server_name _;
+            location / {
+                try_files $uri $uri/ /index.php?$query_string;
+            }
 
-    root /app/public;
-    index index.php index.html;
-
-    location / {
-        try_files $uri $uri/ /index.php?$query_string;
-    }
-
-    location ~ \\.php$ {
-        include fastcgi_params;
-        fastcgi_pass 127.0.0.1:9000;
-        fastcgi_index index.php;
-        fastcgi_param SCRIPT_FILENAME /app/public$fastcgi_script_name;
-    }
-}
-"""
+            location ~ \.php$ {
+                include fastcgi_params;
+                fastcgi_pass 127.0.0.1:9000;
+                fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME /app/public$fastcgi_script_name;
+            }
+        }
