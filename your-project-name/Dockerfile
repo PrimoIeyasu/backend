@@ -36,5 +36,5 @@ RUN php artisan view:cache
 # Expose port 8000
 EXPOSE 8000
 
-# Start Laravel development server
-CMD php artisan serve --host=0.0.0.0 --port=8000
+# Run Laravel's built-in PHP server
+RUN php artisan serve --host=0.0.0.0 --port=8000
