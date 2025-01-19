@@ -22,7 +22,7 @@ COPY . .
 # Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Set permissions
+# Set permissions for Laravel files
 RUN chown -R www-data:www-data /var/www
 
 # Generate Laravel app key
@@ -36,5 +36,5 @@ RUN php artisan view:cache
 # Expose port 8000
 EXPOSE 8000
 
-# Run Laravel's built-in PHP server
-RUN php artisan serve --host=0.0.0.0 --port=8000
+# Run Laravel's built-in PHP server (use CMD, not RUN)
+CMD php artisan serve --host=0.0.0.0 --port=8000
