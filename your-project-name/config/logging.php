@@ -2,15 +2,14 @@
 
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
-use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Processor\PsrLogMessageProcessor;
 
 return [
 
     /*
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     | Default Log Channel
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     |
     | This option defines the default log channel that gets used when writing
     | messages to the logs. The name specified in this option should match
@@ -21,9 +20,9 @@ return [
     'default' => env('LOG_CHANNEL', 'stack'),
 
     /*
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     | Deprecations Log Channel
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     |
     | This option controls the log channel that should be used to log warnings
     | regarding deprecated PHP and library features. This allows you to get
@@ -37,9 +36,9 @@ return [
     ],
 
     /*
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     | Log Channels
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     |
     | Here you may configure the log channels for your application. Out of
     | the box, Laravel uses the Monolog PHP logging library. This gives
@@ -72,29 +71,6 @@ return [
             'days' => 14,
             'replace_placeholders' => true,
         ],
-
-        // Commenting out unused Slack configuration
-        // 'slack' => [
-        //     'driver' => 'slack',
-        //     'url' => env('LOG_SLACK_WEBHOOK_URL'),
-        //     'username' => 'Laravel Log',
-        //     'emoji' => ':boom:',
-        //     'level' => env('LOG_LEVEL', 'critical'),
-        //     'replace_placeholders' => true,
-        // ],
-
-        // Commenting out unused Papertrail configuration
-        // 'papertrail' => [
-        //     'driver' => 'monolog',
-        //     'level' => env('LOG_LEVEL', 'debug'),
-        //     'handler' => env('LOG_PAPERTRAIL_HANDLER', SyslogUdpHandler::class),
-        //     'handler_with' => [
-        //         'host' => env('PAPERTRAIL_URL'),
-        //         'port' => env('PAPERTRAIL_PORT'),
-        //         'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
-        //     ],
-        //     'processors' => [PsrLogMessageProcessor::class],
-        // ],
 
         'stderr' => [
             'driver' => 'monolog',
@@ -129,5 +105,4 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
     ],
-
 ];
